@@ -4,6 +4,7 @@ import { auth } from './firebase';
 const SignIn = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState(''); // Define error state
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -11,7 +12,7 @@ const SignIn = () => {
       await auth.signInWithEmailAndPassword(email, password);
       // Redirect the user or update the UI after successful sign-in
     } catch (error) {
-      // Display the error message to the user
+      setError(error.message); // Set error message
     }
   };
 
@@ -44,6 +45,7 @@ const SignIn = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
+        {error && <p className="text-red-500 text-sm mt-2">{error}</p>} {/* Display error */}
         <div className="flex items-center justify-between">
           <button
             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"

@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { Search, Home, MapPin, DollarSign, BedDouble, Bath, Square, SlidersHorizontal, Heart, HeartOff } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import Image from 'next/image';
 
 
 const RentalWebsite = () => {
@@ -204,11 +205,14 @@ const RentalWebsite = () => {
           {filteredProperties.map((property) => (
             <Card key={property.id} className="overflow-hidden hover:shadow-lg transition-shadow">
               <div className="relative">
-                <img
-                  src={property.image}
-                  alt={property.title}
-                  className="w-full h-48 object-cover"
-                />
+              <Image
+               src={property.image}
+               alt={property.title}
+               width={500}  // adjust as needed
+               height={300} // adjust as needed
+               className="w-full h-48 object-cover"
+              />
+
                 <button
                   onClick={() => toggleFavorite(property.id)}
                   className="absolute top-2 right-2 p-2 bg-white rounded-full shadow-md"
